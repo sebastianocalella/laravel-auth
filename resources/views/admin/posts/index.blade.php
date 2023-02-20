@@ -2,14 +2,16 @@
 
 @section('content')
     <div class="container my-5">
-        <table class="table">
+        <table class="table table-striped table-dark">
             <thead>
                 <tr>
                     <th scope="col">#id</th>
                     <th scope="col">Title</th>
                     <th scope="col">Author</th>
                     <th scope="col">post date</th>
-                    <th scope="col">actions</th>
+                    <th scope="col">
+                        <a class="btn btn-sm btn-primary w-100" href="">Create Post</a>
+                    </th>
                 </tr>
             </thead>
             <tbody>
