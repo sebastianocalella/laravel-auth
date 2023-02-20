@@ -10,7 +10,7 @@
                     <th scope="col">Author</th>
                     <th scope="col">post date</th>
                     <th scope="col">
-                        <a class="btn btn-sm btn-primary w-100" href="">Create Post</a>
+                        <a class="btn btn-sm btn-primary w-100" href="{{route('admin.posts.create')}}">Create Post</a>
                     </th>
                 </tr>
             </thead>
@@ -22,7 +22,7 @@
                         <td>{{ $post->author }}</td>
                         <td>{{ $post->post_date }}</td>
                         <td>
-                            <a class="btn btn-sm btn-primary" href="">Show</a>
+                            <a class="btn btn-sm btn-primary" href="{{route('admin.posts.show',$post->id)}}">Show</a>
                             <a class="btn btn-sm btn-success" href="">Edit</a>
                             <a class="btn btn-sm btn-danger" href="">Delete</a>
                         </td>
