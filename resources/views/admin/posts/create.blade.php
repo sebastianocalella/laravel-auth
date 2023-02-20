@@ -14,7 +14,7 @@
                 <textarea type="text" class="form-control" id="text-content" placeholder="Once upon a time..." name="content">
                 </textarea>
             </div>
-            <h4>date: {{now()->format('Y-m-d')}}</h4>
+            <h4>date: {{now()->format('d-m-Y')}}</h4>
             <button type="submit" class="btn btn-primary">Create Post</button>
         </form>
     </div>

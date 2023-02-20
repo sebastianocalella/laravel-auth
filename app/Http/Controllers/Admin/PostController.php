@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -37,7 +39,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|unique:posts',
+            'content' => 'required'
+        ]);
+
+        $data['author'] = Auth::user()->name;
+        $data['slug'] = Str::slug($data['title']);
+        $data['post_date'] = now()->format('Y-m-d');
+        $newPost = new Post();
+        $newPost->fill($data);
+        $newPost->save();
+
+        return redirect()->route('admin.posts.index')->with('message','Post $newPost->title has benn created succesfully');
     }
 
     /**
