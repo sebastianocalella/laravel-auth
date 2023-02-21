@@ -17,4 +17,14 @@ class Post extends Model
         'post_date',
         'content'
     ];
+
+    /**
+     * Get the route key for the model
+     * 
+     * @return string
+     */
+    public function getKeyName()
+    {
+        return 'slug';
+    }
 }

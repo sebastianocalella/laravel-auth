@@ -15,7 +15,7 @@ class PostController extends Controller
 
     protected $validationRules = [
             'title' => ['required'],
-            //'slug' => [],
+            'slug' => [],
             'content' => 'required'
         ];
 
@@ -91,7 +91,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        array_push($this->validationRules['title']/*,['slug']*/, Rule::unique('posts')->ignore($post->id));
+        array_push($this->validationRules['title'],['slug'], Rule::unique('posts')->ignore($post->id));
         $data = $request->validate($this->validationRules);
         $data['slug'] = Str::slug($data['title']);
         $data['post_date'] = now()->format('Y-m-d H-i-s');
