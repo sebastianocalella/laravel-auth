@@ -15,6 +15,10 @@
             </textarea>
         </div>
         <h4>date: {{now()->format('Y/m/d H:i:s')}}</h4>
-        <button type="submit" class="btn btn-primary">Create Post</button>
+        @if ($method == 'POST')
+            <button type="submit" class="btn btn-primary">Create Post</button>
+        @else
+            <button type="submit" class="btn btn-warning">Modify Post</button>
+        @endif
     </form>
 </div>
