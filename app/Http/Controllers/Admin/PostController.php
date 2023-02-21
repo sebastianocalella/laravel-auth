@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        return view('admin.posts.create', ['post' => new Post()]);
     }
 
     /**
@@ -46,7 +46,7 @@ class PostController extends Controller
 
         $data['author'] = Auth::user()->name;
         $data['slug'] = Str::slug($data['title']);
-        $data['post_date'] = now()->format('Y-m-d');
+        $data['post_date'] = now()->format('Y-m-d H-i-s');
         $newPost = new Post();
         $newPost->fill($data);
         $newPost->save();
@@ -68,12 +68,12 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Post $post
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
