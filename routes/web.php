@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController as DashboardController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
+use App\Http\Controllers\Guest\PostController as GuestPostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::prefix('guest')->name('guest.')->group(
+    function(){
+        Route::get('/posts', [GuestPostController::class, 'index'])->name('posts.index');
+    }
+);
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     function(){
