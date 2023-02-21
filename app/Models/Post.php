@@ -23,7 +23,7 @@ class Post extends Model
      * 
      * @return string
      */
-    public function getKeyName()
+    public function getRouteKeyName()
     {
         return 'slug';
     }
