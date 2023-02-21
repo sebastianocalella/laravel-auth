@@ -7,9 +7,17 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
+
+    protected $validationRules = [
+            'title' => ['required'],
+            //'slug' => [],
+            'content' => 'required'
+        ];
+
     /**
      * Display a listing of the resource.
      *
@@ -39,10 +47,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'title' => 'required|unique:posts',
-            'content' => 'required'
-        ]);
+        $data = $request->validate($this->validationRules);
 
         $data['author'] = Auth::user()->name;
         $data['slug'] = Str::slug($data['title']);
@@ -57,7 +62,7 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Post $post
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post)
@@ -80,12 +85,18 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Post $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        array_push($this->validationRules['title']/*,['slug']*/, Rule::unique('posts')->ignore($post->id));
+        $data = $request->validate($this->validationRules);
+        $data['slug'] = Str::slug($data['title']);
+        $data['post_date'] = now()->format('Y-m-d H-i-s');
+        $post->update($data);
+        return redirect()->route('admin.posts.show', compact('post'));
+
     }
 
     /**
