@@ -71,7 +71,7 @@ class ProjectController extends Controller
     {
         $previousProject = Project::where('modification_date', '>', $project->modification_date)->orderBy('modification_date')->first();
         $nextProject = Project::where('modification_date', '<', $project->modification_date)->orderBy('modification_date', 'DESC')->first();
-        return view('admin.projects.show', compact('project', 'previousPost', 'nextPost'));
+        return view('admin.projects.show', compact('project', 'previousProject', 'nextProject'));
     }
 
     /**
@@ -94,7 +94,8 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        array_push($this->validationRules['title'],['slug'], Rule::unique('posts')->ignore($project->id));
+        $updateValidation = $this->validationRules;
+        array_push($updateValidation, Rule::unique('projects')->ignore($project->id));
         $data = $request->validate($this->validationRules);
         $data['slug'] = Str::slug($data['title']);
         $data['modification_date'] = now()->format('Y-m-d H-i-s');
