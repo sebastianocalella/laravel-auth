@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController as DashboardController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\Guest\PostController as GuestPostController;
+use App\Http\Controllers\Guest\ProjectController as GuestProjectController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,7 @@ Route::get('/', function () {
 Route::prefix('guest')->name('guest.')->group(
     function(){
         Route::get('/posts', [GuestPostController::class, 'index'])->name('posts.index');
+        Route::get('/projects', [GuestProjectController::class, 'index'])->name('projects.index');
     }
 );
 

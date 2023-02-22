@@ -41,6 +41,6 @@
                 @endforeach
             </tbody>
         </table>
-        {{$posts->links()}}
+        {{$projects->links()}}
     </div>
 @endsection
