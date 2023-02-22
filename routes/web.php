@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController as DashboardController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
+use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\Guest\PostController as GuestPostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     function(){
         Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
         Route::resource('/posts', AdminPostController::class);
+        Route::resource('/projects', AdminProjectController::class);
     }
 );
 
