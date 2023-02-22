@@ -31,7 +31,7 @@
                         <td>
                             <a class="btn btn-sm btn-primary" href="{{route('admin.posts.show', $post->slug)}}">Show</a>
                             <a class="btn btn-sm btn-success" href="{{route('admin.posts.edit', $post->slug)}}">Edit</a>
-                            <form class="d-inline" action="{{route('admin.posts.destroy', $post->id)}}" method="POST">
+                            <form class="d-inline" action="{{route('admin.posts.destroy', $post->slug)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>
