@@ -25,7 +25,9 @@
             <div class="invalid-feedback">
                 {{$message}}
             </div>
-        @enderror
+            @enderror
+            <input id="is-urgent" class="form-check-input" type="checkbox" value="1" {{old('is_urgent', $project->is_urgent) ? 'checked' : ''}} name="is_urgent">
+            <label class="form-check-label" for="is-urgent">important</label>
         </div>
         <h4>date: {{now()->format('Y/m/d H:i:s')}}</h4>
         @if ($method == 'POST')
