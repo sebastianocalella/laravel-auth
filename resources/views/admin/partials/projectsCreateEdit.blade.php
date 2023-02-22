@@ -20,9 +20,7 @@
         </div>
         <div class="form-group">
             <label for="project-description">Address 2</label>
-            <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="project-description" placeholder="Once upon a time..." name="description">
-                {{old('description', $project->description)}}
-            </textarea>
+            <textarea rows="8" type="text" class="form-control @error('description') is-invalid @enderror" id="project-description" placeholder="Once upon a time..." name="description">{{old('description', $project->description)}}</textarea>
             @error('description')
             <div class="invalid-feedback">
                 {{$message}}
