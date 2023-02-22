@@ -10,8 +10,8 @@
         @method($method)
         <h3>Author: {{Auth::user()->name}}</h3>
         <div class="form-group col-8">
-            <label for="post-title" class="form-label">post title:</label>
-            <input type="text" class="form-control @error('title') is-invalid @enderror" id="post-title" placeholder="insert post title here" name="title" value="{{old('title', $project->title)}}">
+            <label for="project-title" class="form-label">post title:</label>
+            <input type="text" class="form-control @error('title') is-invalid @enderror" id="project-title" placeholder="insert project title here" name="title" value="{{old('title', $project->title)}}">
             @error('title')
                 <div class="invalid-feedback">
                     {{$message}}
@@ -23,7 +23,7 @@
             <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="project-description" placeholder="Once upon a time..." name="description">
                 {{old('description', $project->description)}}
             </textarea>
-            @error('title')
+            @error('description')
             <div class="invalid-feedback">
                 {{$message}}
             </div>

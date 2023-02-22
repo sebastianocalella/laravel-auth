@@ -53,11 +53,12 @@ class ProjectController extends Controller
         $data['author'] = Auth::user()->name;
         $data['slug'] = Str::slug($data['title']);
         $data['modification_date'] = now()->format('Y-m-d H-i-s');
-        $newPost = new Project();
-        $newPost->fill($data);
-        $newPost->save();
+        $data['is_urgent'] = true;
+        $newProject = new Project();
+        $newProject->fill($data);
+        $newProject->save();
 
-        return redirect()->route('admin.projects.index')->with('message','Project $newProject->title has benn created succesfully');
+        return redirect()->route('admin.projects.index')->with('message',"Project $newProject->title has benn created succesfully");
     }
 
     /**
