@@ -99,7 +99,6 @@ class PostController extends Controller
         $data['post_date'] = now()->format('Y-m-d H-i-s');
         $post->update($data);
         return redirect()->route('admin.posts.show', compact('post'));
-
     }
 
     /**
