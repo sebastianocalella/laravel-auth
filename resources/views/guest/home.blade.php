@@ -14,7 +14,7 @@
                     </div>
                     <div class="card-footer text-muted">
                         {{$project->modification_date}}
-                        <a class="btn btn-primary ms-5" href="#">Show</a>
+                        <a class="btn btn-primary ms-5" href="{{route('guest.projects.show', $project->slug)}}">Show</a>
                     </div>
                 </div>
             @endforeach
