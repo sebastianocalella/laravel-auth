@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('author',30);
             $table->string('slug',30);
-            $table->string('title',30);
+            $table->string('title',80);
             $table->dateTime('modification_date');
             $table->boolean('is_urgent');
             $table->text('description',3000);
