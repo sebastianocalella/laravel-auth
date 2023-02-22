@@ -20,8 +20,8 @@ class ProjectSeeder extends Seeder
         for ($i=0; $i <250 ; $i++) { 
             $newProject = new Project();
             $newProject->author = $faker->name();
-            $newProject->slug = Str::slug($newProject->title);
             $newProject->title = $faker->unique()->sentence(2);
+            $newProject->slug = Str::slug($newProject->title);
             $newProject->modification_date = $faker->dateTimeThisYear();
             $newProject->is_urgent = $faker->boolean();
             $newProject->description = $faker->text(1000);
