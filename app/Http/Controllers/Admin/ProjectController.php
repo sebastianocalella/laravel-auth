@@ -110,6 +110,16 @@ class ProjectController extends Controller
     }
 
     /**
+     * Display a list of trashed resources
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function trashed(){
+        $projects = Project::onlyTrashed()->get();
+        return view('admin.projects.trashed', compact('projects'));
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  Project $project
@@ -118,6 +128,6 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
-        return redirect()->route('admin.projects.index')->with('message', "Project \"$project->title\" has been deleted sucesfully");
+        return redirect()->route('admin.projects.index')->with('message', "Project \"$project->title\" has been moved to the trash");
     }
 }
