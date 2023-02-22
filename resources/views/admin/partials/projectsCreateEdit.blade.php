@@ -18,7 +18,7 @@
                 </div>
             @enderror
         </div>
-        <div class="form-group">
+        <div class="form-group my-3">
             <label for="project-description">Address 2</label>
             <textarea rows="8" type="text" class="form-control @error('description') is-invalid @enderror" id="project-description" placeholder="Once upon a time..." name="description">{{old('description', $project->description)}}</textarea>
             @error('description')
@@ -26,8 +26,10 @@
                 {{$message}}
             </div>
             @enderror
-            <input id="is-urgent" class="form-check-input" type="checkbox" value="1" {{old('is_urgent', $project->is_urgent) ? 'checked' : ''}} name="is_urgent">
-            <label class="form-check-label" for="is-urgent">important</label>
+            <div class="my-3">
+                <input id="is-urgent" class="form-check-input" type="checkbox" value="1" {{old('is_urgent', $project->is_urgent) ? 'checked' : ''}} name="is_urgent">
+                <label class="form-check-label" for="is-urgent">important</label>
+            </div>
         </div>
         <h4>date: {{now()->format('Y/m/d H:i:s')}}</h4>
         @if ($method == 'POST')

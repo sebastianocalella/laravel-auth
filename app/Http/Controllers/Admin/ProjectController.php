@@ -13,9 +13,15 @@ use Illuminate\Support\Facades\DB;
 class ProjectController extends Controller
 {
 
+    protected $rules = [
+        'title' => 'required|unique:projects',
+        'slug' => 'unique',
+        'description' => 'required'
+    ];
+
     protected $validationRules = [
         'title' => ['required'],
-        'slug' => [],
+        'slug' => 'unique:projects',
         'description' => 'required'
     ];
 
@@ -48,7 +54,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate($this->validationRules);
+        $data = $request->validate($this->rules);
 
         $data['author'] = Auth::user()->name;
         $data['slug'] = Str::slug($data['title']);
