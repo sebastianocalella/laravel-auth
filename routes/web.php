@@ -26,7 +26,7 @@ Route::get('/', function () {
 Route::prefix('guest')->name('guest.')->group(
     function(){
         Route::get('/posts', [GuestPostController::class, 'index'])->name('posts.index');
-        Route::get('/projects', [GuestProjectController::class, 'index'])->name('projects.index');
+        Route::resource('/projects', GuestProjectController::class);
     }
 );
 

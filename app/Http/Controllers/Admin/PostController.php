@@ -68,8 +68,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $previousPost = Post::where('post_date', '>', $post->post_date)->orderBy('post_date')->first();
         $nextPost = Post::where('post_date', '<', $post->post_date)->orderBy('post_date', 'DESC')->first();
+        $previousPost = Post::where('post_date', '>', $post->post_date)->orderBy('post_date')->first();
         return view('admin.posts.show', compact('post', 'previousPost', 'nextPost'));
     }
 
@@ -99,6 +99,7 @@ class PostController extends Controller
         $data['post_date'] = now()->format('Y-m-d H-i-s');
         $post->update($data);
         return redirect()->route('admin.posts.show', compact('post'));
+
     }
 
     /**
