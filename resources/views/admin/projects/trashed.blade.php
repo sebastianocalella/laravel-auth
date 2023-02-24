@@ -23,8 +23,11 @@
                     <tr>
                         <th scope="row">{{ $project->id }}</th>
                         <td>{{ $project->title }}</td>
-                        <td class="d-flex justify-content-end">
-                            <a class="btn btn-sm btn-primary me-4" href="{{route('admin.projects.restore', $project->slug)}}">Restore</a>
+                        <td class="d-flex justify-content-end">                        
+                            <form class="d-inline me-4" action="{{route('admin.projects.restore', $project->slug)}}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-sm btn-primary">restore</button>
+                            </form>
                             <form class="d-inline me-4" action="{{route('admin.projects.force-delete', $project->slug)}}" method="POST">
                                 @csrf
                                 @method('DELETE')

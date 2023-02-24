@@ -118,6 +118,7 @@ class ProjectController extends Controller
      */
     public function trashed(){
         $projects = Project::onlyTrashed()->get();
+        //dd($projects);
         return view('admin.projects.trashed', compact('projects'));
     }
 
@@ -128,8 +129,8 @@ class ProjectController extends Controller
      * 
      * @return Illuminate\Http\Response
      */
-    public function restore($id){
-        Project::where('id', $id)->withTrashed()->restore();
+    public function restore($slug){
+        Project::where('slug', $slug)->withTrashed()->restore();
         return redirect()->route('admin.projects.index')->with('message', "Project restored sucesfully")->with('alert-type', 'alert-success');
     }
 
@@ -151,9 +152,9 @@ class ProjectController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    public function forceDelete($id)
+    public function forceDelete($slug)
     {
-        Project::where('id', $id)->withTrashed()->forceDelete();
+        Project::where('slug', $slug)->withTrashed()->forceDelete();
         return redirect()->route('admin.projects.trashed')->with('alert-message', "Delete definitely")->with('alert-type', 'success');
     }
 
