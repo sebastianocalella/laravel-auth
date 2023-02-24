@@ -134,6 +134,30 @@ class ProjectController extends Controller
     }
 
     /**
+     * Restore all archived books
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function restoreAll()
+    {
+        Project::onlyTrashed()->restore();
+        return redirect()->route('admin.projects.index')->with('alert-message', "All trashed projects restored successfully")->with('alert-type', 'success');
+    }
+
+    /**
+     * Force delete book data
+     * 
+     * @param Book $book
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function forceDelete($id)
+    {
+        Project::where('id', $id)->withTrashed()->forceDelete();
+        return redirect()->route('admin.projects.trashed')->with('alert-message', "Delete definitely")->with('alert-type', 'success');
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  Project $project
