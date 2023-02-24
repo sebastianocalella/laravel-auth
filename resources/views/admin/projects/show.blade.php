@@ -8,6 +8,9 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{$project->id}} {{$project->title}}</h5>
+                <div class="card-image">
+                    <img class="img-fluid" src="{{asset('storage/' . $project->image_path)}}" alt="">
+                </div>
                 <div class="row align-items-center my-4">
                     @if (isset($previousProject))
                         <div class="col-2">
