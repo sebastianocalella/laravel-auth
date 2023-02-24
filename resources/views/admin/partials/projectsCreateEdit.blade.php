@@ -5,7 +5,7 @@
             <h4>Please make sure to insert data correctly</h4>
         </div>
     @endif
-    <form class="text-white bg-dark py-3 px-4" action="{{route($routeName, $project)}}" method="POST">
+    <form class="text-white bg-dark py-3 px-4" action="{{route($routeName, $project)}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method($method)
         <h3>Author: {{Auth::user()->name}}</h3>
