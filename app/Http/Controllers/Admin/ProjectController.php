@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -16,7 +17,8 @@ class ProjectController extends Controller
     protected $rules = [
         'title' => 'required|unique:projects',
         'slug' => 'unique',
-        'description' => 'required'
+        'description' => 'required',
+        'image_path' => 'image'
     ];
 
     protected $validationRules = [
@@ -55,9 +57,9 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate($this->rules);
-
         $data['author'] = Auth::user()->name;
         $data['slug'] = Str::slug($data['title']);
+        $data['image_path'] = Storage::put('imgs/', $data['image_path']);
         $data['modification_date'] = now()->format('Y-m-d H-i-s');
         $data['is_urgent'] = true;
         $newProject = new Project();
@@ -117,6 +119,18 @@ class ProjectController extends Controller
     public function trashed(){
         $projects = Project::onlyTrashed()->get();
         return view('admin.projects.trashed', compact('projects'));
+    }
+
+    /**
+     * Restore selected trashed element
+     * 
+     * @param Project $project
+     * 
+     * @return Illuminate\Http\Response
+     */
+    public function restore($id){
+        Project::where('id', $id)->withTrashed()->restore();
+        return redirect()->route('admin.projects.index')->with('message', "Project restored sucesfully")->with('alert-type', 'alert-success');
     }
 
     /**
