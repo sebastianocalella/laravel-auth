@@ -17,7 +17,8 @@ class Project extends Model
         'title',
         'modification_date',
         'is_urgent',
-        'description'
+        'description',
+        'image_path'
     ];
 
     /**
