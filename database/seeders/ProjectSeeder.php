@@ -7,6 +7,7 @@ use Faker\Generator as Faker;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectSeeder extends Seeder
 {
@@ -25,6 +26,7 @@ class ProjectSeeder extends Seeder
             $newProject->modification_date = $faker->dateTimeThisYear();
             $newProject->is_urgent = $faker->boolean();
             $newProject->description = $faker->text(1000);
+            $newProject->image_path = 'placeholder.png';
             $newProject->save();
         }
     }
