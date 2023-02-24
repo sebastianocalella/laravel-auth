@@ -16,8 +16,8 @@
                     <th scope="col">Title</th>
                     <th scope="col">Author</th>
                     <th scope="col">last modification</th>
-                    <th scope="col">
-                        <a class="btn btn-sm btn-primary w-100" href="{{route('admin.projects.create')}}">Create Post</a>
+                    <th class="text-center" scope="col">
+                        <a class="btn btn-sm btn-primary w-100" href="{{route('admin.projects.create')}}"><i class="fa-solid fa-plus"></i> Create new element</a>
                     </th>
                 </tr>
             </thead>
@@ -28,13 +28,13 @@
                         <td>{{ $project->title }}</td>
                         <td>{{ $project->author }}</td>
                         <td>{{ $project->modification_date }}</td>
-                        <td>
-                            <a class="btn btn-sm btn-primary" href="{{route('admin.projects.show', $project->slug)}}">Show</a>
-                            <a class="btn btn-sm btn-success" href="{{route('admin.projects.edit', $project->slug)}}">Edit</a>
+                        <td class="d-flex justify-content-between px-5">
+                            <a class="btn btn-sm btn-primary" href="{{route('admin.projects.show', $project->slug)}}"><i class="fa-solid fa-eye"></i></a>
+                            <a class="btn btn-sm btn-success" href="{{route('admin.projects.edit', $project->slug)}}"><i class="fa-solid fa-pencil"></i></a>
                             <form class="d-inline" action="{{route('admin.projects.destroy', $project->slug)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>
