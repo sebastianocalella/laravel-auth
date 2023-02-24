@@ -26,7 +26,7 @@ class ProjectSeeder extends Seeder
             $newProject->modification_date = $faker->dateTimeThisYear();
             $newProject->is_urgent = $faker->boolean();
             $newProject->description = $faker->text(1000);
-            $newProject->image_path = 'placeholder.png';
+            $newProject->image_path = $faker->unique()->imageUrl();
             $newProject->save();
         }
     }

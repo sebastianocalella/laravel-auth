@@ -9,7 +9,12 @@
             <div class="card-body">
                 <h5 class="card-title">{{$project->id}} {{$project->title}}</h5>
                 <div class="card-image">
-                    <img class="img-fluid" src="{{asset('storage/' . $project->image_path)}}" alt="project cover">
+                    @if (str_starts_with($project->image_path, 'http'))
+                        <img src="{{$project->image_path}}"
+                    @else
+                        <img src="{{asset('storage/' . $project->image_path)}}"
+                    @endif
+                    alt="project cover" class="img-fluid">
                 </div>
                 <div class="row align-items-center my-4">
                     @if (isset($previousProject))
