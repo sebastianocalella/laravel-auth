@@ -28,10 +28,10 @@
                                 @csrf
                                 <button type="submit" class="btn btn-sm btn-primary">restore</button>
                             </form>
-                            <form class="d-inline me-4" action="{{route('admin.projects.force-delete', $project->slug)}}" method="POST">
+                            <form class="d-inline me-4 delete double-confirm" action="{{route('admin.projects.force-delete', $project->slug)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-sm btn-danger" title="delete">Delete</button>
                             </form>
                         </td>
                     </tr>
